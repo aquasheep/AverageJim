@@ -1,5 +1,11 @@
 package com.aquasheep.average_jim.screens;
 
-public class GameScreen {
+import com.aquasheep.average_jim.AverageJimGame;
 
+public class GameScreen extends AbstractScreen {
+	
+	public GameScreen(AverageJimGame game) {
+		super(game);
+	}
+	
 }

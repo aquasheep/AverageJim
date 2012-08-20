@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aquasheep.average_jim_android"
     android:versionCode="1"
-    android:versionName="build 3" >
+    android:versionName="build 4" >
 
     <uses-sdk
         android:minSdkVersion="8"
