@@ -1,4 +1,4 @@
-package com.aquasheep.average_jim_android;
+package com.aquasheep.average_jim;
 
 import android.os.Bundle;
 import android.app.Activity;
