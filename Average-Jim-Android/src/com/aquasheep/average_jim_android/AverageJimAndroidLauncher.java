@@ -1,15 +1,19 @@
 package com.aquasheep.average_jim_android;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class AverageJimAndroidLauncher extends Activity {
+import com.aquasheep.average_jim.AverageJimGame;
+import com.badlogic.gdx.backends.android.AndroidApplication;
+
+public class AverageJimAndroidLauncher extends AndroidApplication {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_average_jim_android_launcher);
+        
+        initialize(new AverageJimGame(), false);
+        
     }
 
     @Override
@@ -17,4 +21,5 @@ public class AverageJimAndroidLauncher extends Activity {
         getMenuInflater().inflate(R.menu.activity_average_jim_android_launcher, menu);
         return true;
     }
+    
 }
