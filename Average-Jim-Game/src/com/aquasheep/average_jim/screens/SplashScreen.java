@@ -42,13 +42,14 @@ public class SplashScreen extends AbstractScreen {
 		//Change image to 0 alpha so that fadeIn will work
 		splashImage.getColor().a = 0f;
 		
-		splashImage.addAction(sequence(fadeIn(0.75f),delay(5.0f, fadeOut(0.75f)), 
+		//Initial delay is necessary for fadeIn to be visible on Android
+		splashImage.addAction(delay(0.5f,sequence(fadeIn(0.75f),delay(5.0f, fadeOut(0.75f)), 
 			new Action() {
 				public boolean act(float delta) {
 					game.setScreen(new MenuScreen(game));
 					return true;
 				}
-			}));
+			})));
 		
 		stage.addActor(splashImage);
 		
