@@ -1,7 +1,7 @@
-package com.aquasheep.average_jim;
+package com.aquasheep.average_jim_android;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class AverageJimAndroidLauncher extends Activity {
