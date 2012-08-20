@@ -1,17 +1,18 @@
 package com.aquasheep.average_jim;
 
-import com.badlogic.gdx.ApplicationListener;
+import com.aquasheep.average_jim.screens.SplashScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.GL20;
 
-public class AverageJimGame implements ApplicationListener {
+public class AverageJimGame extends Game {
 	
-	public static final String LOG = "AverageJimGame Log";
+	public static final String LOG = "AverageJim Log";
 	private FPSLogger fpsLogger;
 	
 	@Override
 	public void create() {
+		setScreen(new SplashScreen(this));
 		Gdx.app.log(LOG, "Creating game");
 		fpsLogger = new FPSLogger();
 	}
@@ -23,8 +24,7 @@ public class AverageJimGame implements ApplicationListener {
 
 	@Override
 	public void render() {
-		Gdx.gl.glClearColor(1f,0f,0f,1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		super.render();
 		fpsLogger.log();
 	}
 

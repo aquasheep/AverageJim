@@ -11,5 +11,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/aquasheep/Programming/Java Stuff/Game Dev/LibGDX/gdx-backend-lwjgl-natives.jar"/>
 	<classpathentry kind="lib" path="/home/aquasheep/Programming/Java Stuff/Game Dev/LibGDX/gdx-natives.jar"/>
+	<classpathentry kind="lib" path="/home/aquasheep/Programming/Java Stuff/Game Dev/LibGDX/extensions/gdx-tools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
