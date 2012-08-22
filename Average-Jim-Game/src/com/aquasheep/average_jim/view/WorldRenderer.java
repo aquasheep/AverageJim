@@ -69,9 +69,12 @@ public class WorldRenderer {
 	public void render() {
 		//Update the camera position
 		cam.position.set(world.getJim().getPosition().x*ppuX,world.getJim().getPosition().y*ppuY,0);
-		cam.zoom = 100f;
+		cam.viewportHeight = CAMERA_HEIGHT*ppuY;
+		cam.viewportWidth = CAMERA_WIDTH*ppuX;
+		
 		System.out.println("Cam position is now: "+cam.position.x+","+cam.position.y);
 		cam.update();
+		cam.apply(Gdx.gl10);
 		
 		spriteBatch.setProjectionMatrix(cam.combined);
 		//Draw sprites
