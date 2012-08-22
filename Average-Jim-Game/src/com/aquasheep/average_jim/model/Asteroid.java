@@ -1,5 +1,5 @@
 package com.aquasheep.average_jim.model;
 
-public class Meteor {
+public class Asteroid {
 
 }
