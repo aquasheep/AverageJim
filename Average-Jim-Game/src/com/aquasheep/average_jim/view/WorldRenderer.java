@@ -34,6 +34,11 @@ public class WorldRenderer {
 	private int width,height;
 	private float ppuX,ppuY;//Pixels per unit
 	
+	/**
+	 * 
+	 * @param world - the current level of the game
+	 * @param debug - whether to render debug shapes (true) or images (false)
+	 */
 	public WorldRenderer(AbstractWorld world,boolean debug) {
 		this.world = world;
 		cam = new OrthographicCamera(CAMERA_WIDTH,CAMERA_HEIGHT);
@@ -56,7 +61,7 @@ public class WorldRenderer {
 		jimTexture = new Texture(Gdx.files.internal("images/jim_01.png"));
 		citizenTexture = new Texture(Gdx.files.internal("images/citizen_01.png"));
 		asteroidTexture = new Texture(Gdx.files.internal("images/asteroid_01.png"));
-		blockTexture = new Texture(Gdx.files.internal("block.png"));
+		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
 	
 	public void render() {
@@ -69,6 +74,8 @@ public class WorldRenderer {
 			spriteBatch.end();
 		} else
 			drawDebug();
+		cam.position.set(world.getJim().getPosition().x*1f,world.getJim().getPosition().y*1f,0);
+		cam.update();
 	}
 	
 	private void drawBlocks() {
@@ -82,19 +89,19 @@ public class WorldRenderer {
 		spriteBatch.draw(jimTexture, jim.getPosition().x*ppuX,jim.getPosition().y*ppuY,Jim.SIZE*ppuX,Jim.SIZE*ppuY);
 	}
 	
-//	private void drawAsteroids() {
-//		world.updateAsteroids();
-//		for (Asteroid roid : world.getAsteroids()) {
-//			spriteBatch.draw(asteroidTexture,roid.getPosition().x*ppuX,roid.getPosition().y*ppuY,roid.SIZE*ppuX,roid.SIZE*ppuY);
-//		}
-//	}
-//	
-//	private void drawCitizens() {
-//		world.updateCitizens();
-//		for (Citizen cit : world.getCitizens()) {
-//			spriteBatch.draw(citizenTexture,cit.getPosition().x*ppuX,cit.getPosition().y*ppuY,Citizen.SIZE*ppuX,Citizen.SIZE*ppuY);
-//		}
-//	}
+	private void drawAsteroids() {
+		world.updateAsteroids();
+		for (Asteroid roid : world.getAsteroids()) {
+			spriteBatch.draw(asteroidTexture,roid.getPosition().x*ppuX,roid.getPosition().y*ppuY,roid.SIZE*ppuX,roid.SIZE*ppuY);
+		}
+	}
+	
+	private void drawCitizens() {
+		world.updateCitizens();
+		for (Citizen cit : world.getCitizens()) {
+			spriteBatch.draw(citizenTexture,cit.getPosition().x*ppuX,cit.getPosition().y*ppuY,Citizen.SIZE*ppuX,Citizen.SIZE*ppuY);
+		}
+	}
 	
 	private void drawDebug() {
 		debugRenderer.setProjectionMatrix(cam.combined);
@@ -117,25 +124,25 @@ public class WorldRenderer {
 			debugRenderer.setColor(0, 1, 0, 1);
 			debugRenderer.rect(x1, y1, rect.width, rect.height);
 			
-//			//Render Asteroids
-//			world.updateAsteroids();
-//			for (Asteroid roid : world.getAsteroids()) {
-//				rect = roid.getBounds();
-//				x1 = roid.getPosition().x + rect.x;
-//				y1 = roid.getPosition().y + rect.y;
-//				debugRenderer.setColor(0,0,1,1);
-//				debugRenderer.rect(x1,y1,rect.width,rect.height);
-//			}
-//			
-//			//Render Citizens
-//			world.updateCitizens();
-//			for (Citizen cit : world.getCitizens()) {
-//				rect = cit.getBounds();
-//				x1 = cit.getPosition().x + rect.x;
-//				y1 = cit.getPosition().y + rect.y;
-//				debugRenderer.setColor(1,1,0,1);
-//				debugRenderer.rect(x1,y1,rect.width,rect.height);
-//			}
+			//Render Asteroids
+			world.updateAsteroids();
+			for (Asteroid roid : world.getAsteroids()) {
+				rect = roid.getBounds();
+				x1 = roid.getPosition().x + rect.x;
+				y1 = roid.getPosition().y + rect.y;
+				debugRenderer.setColor(0,0,1,1);
+				debugRenderer.rect(x1,y1,rect.width,rect.height);
+			}
+			
+			//Render Citizens
+			world.updateCitizens();
+			for (Citizen cit : world.getCitizens()) {
+				rect = cit.getBounds();
+				x1 = cit.getPosition().x + rect.x;
+				y1 = cit.getPosition().y + rect.y;
+				debugRenderer.setColor(1,1,0,1);
+				debugRenderer.rect(x1,y1,rect.width,rect.height);
+			}
 			
 		debugRenderer.end();
 	}

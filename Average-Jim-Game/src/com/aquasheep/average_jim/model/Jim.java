@@ -11,7 +11,7 @@ public class Jim {
 	}
 	
 	public static final float SPEED = 2f;
-	public static final float JUMP_VELOCITY = 1f;
+	public static final float JUMP_VELOCITY = 2.5f;
 	public static final float SIZE = 0.5f;
 	
 	private Vector2 	position = new Vector2();
@@ -36,6 +36,7 @@ public class Jim {
 	}
 	
 	public void update(float delta) {
+		velocity.add(acceleration.tmp().mul(delta));
 		position.add(velocity.tmp().mul(delta));
 	}
 
@@ -53,6 +54,10 @@ public class Jim {
 
 	public Vector2 getAcceleration() {
 		return acceleration;
+	}
+
+	public State getState() {
+		return state;
 	}
 	
 }

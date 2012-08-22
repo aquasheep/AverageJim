@@ -71,22 +71,27 @@ public class WorldController {
 	
 	/** Change jim's state based on input **/
 	private void processInput() {
-		if (keys.get(Keys.LEFT)) {
+		if (keys.get(Keys.LEFT) && jim.getState()!=Jim.State.JUMPING) {
 			//Jim is moving left
 			jim.setFacingLeft(true);
 			jim.setState(State.WALKING);
 			jim.getVelocity().x = -Jim.SPEED;
 		}
-		if (keys.get(Keys.RIGHT)) {
+		if (keys.get(Keys.RIGHT) && jim.getState()!=Jim.State.JUMPING) {
 			//Jim is moving left
 			jim.setFacingLeft(false);
 			jim.setState(State.WALKING);
 			jim.getVelocity().x = Jim.SPEED;
 		}
-		if ((keys.get(Keys.RIGHT) && keys.get(Keys.LEFT)) || (!keys.get(Keys.RIGHT) && !keys.get(Keys.LEFT))) {
+		if ((keys.get(Keys.RIGHT) && keys.get(Keys.LEFT)) || (!keys.get(Keys.RIGHT) && !keys.get(Keys.LEFT)) && jim.getState()!=Jim.State.JUMPING) {
 			jim.setState(State.IDLE);
 			jim.getAcceleration().x = 0;
 			jim.getVelocity().x = 0;
+		}
+		if (keys.get(Keys.JUMP) && jim.getState()!=Jim.State.JUMPING) {
+			jim.setState(State.JUMPING);
+			jim.getVelocity().y = Jim.JUMP_VELOCITY;
+			jim.getAcceleration().y = -9.8f;
 		}
 	}
 	

@@ -1,6 +1,6 @@
 package com.aquasheep.average_jim;
 
-import com.aquasheep.average_jim.screens.SplashScreen;
+import com.aquasheep.average_jim.screens.GameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
@@ -12,7 +12,7 @@ public class AverageJimGame extends Game {
 	
 	@Override
 	public void create() {
-		setScreen(new SplashScreen(this));
+		setScreen(new GameScreen(this));
 		Gdx.app.log(LOG, "Creating game");
 		fpsLogger = new FPSLogger();
 	}
