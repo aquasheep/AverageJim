@@ -6,6 +6,7 @@ import com.aquasheep.average_jim.model.Block;
 import com.aquasheep.average_jim.model.Citizen;
 import com.aquasheep.average_jim.model.Jim;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -33,6 +34,7 @@ public class WorldRenderer {
 	private boolean debug = false;
 	private int width,height;
 	private float ppuX,ppuY;//Pixels per unit
+	private Rectangle glViewport;
 	
 	/**
 	 * 
@@ -47,7 +49,7 @@ public class WorldRenderer {
 		this.debug = debug;
 		spriteBatch = new SpriteBatch();
 		if (!debug)
-			loadTextures();		
+			loadTextures();
 	}
 	
 	public void setSize(int w, int h) {
@@ -65,6 +67,14 @@ public class WorldRenderer {
 	}
 	
 	public void render() {
+		//Update the camera position
+		cam.position.set(world.getJim().getPosition().x*ppuX,world.getJim().getPosition().y*ppuY,0);
+		cam.zoom = 100f;
+		System.out.println("Cam position is now: "+cam.position.x+","+cam.position.y);
+		cam.update();
+		
+		spriteBatch.setProjectionMatrix(cam.combined);
+		//Draw sprites
 		if (!debug) {
 			spriteBatch.begin();
 				drawBlocks();
@@ -74,8 +84,6 @@ public class WorldRenderer {
 			spriteBatch.end();
 		} else
 			drawDebug();
-		cam.position.set(world.getJim().getPosition().x*1f,world.getJim().getPosition().y*1f,0);
-		cam.update();
 	}
 	
 	private void drawBlocks() {

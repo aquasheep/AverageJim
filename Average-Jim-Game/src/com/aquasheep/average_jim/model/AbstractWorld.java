@@ -8,8 +8,18 @@ public abstract class AbstractWorld {
 	Array<Block> blocks = new Array<Block>();
 	Array<Citizen> citizens = new Array<Citizen>();
 	Jim jim;
+	protected float height;
+	protected float width;
 	
 	//Accessors
+	public float getHeight() {
+		return height;
+	}
+	
+	public float getWidth() {
+		return width;
+	}
+	
 	public Array<Asteroid> getAsteroids() {
 		return asteroids;
 	}
